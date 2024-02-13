@@ -53,6 +53,7 @@ const updateAppointment = catchAsync(async (req, res) => {
 });
 
 const getPatientAppointmentById = catchAsync(async (req, res) => {
+    console.log(req.user);
     const result = await AppointmentService.getPatientAppointmentById(req.user);
     sendResponse(res, {
         statusCode: 200,

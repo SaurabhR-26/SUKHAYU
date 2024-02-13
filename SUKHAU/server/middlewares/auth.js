@@ -25,10 +25,11 @@ const auth = (...rules) => async (req, res, next) => {
             throw new ApiError(403, "User is not Found !!");
         }
         req.user = verifiedUser;
-
-        if (rules.length && !rules.includes(verifiedUser.role)) {
-            throw new ApiError(403, "You are not Authorised !!");
-        }
+        console.log(rules);
+        console.log();
+        // if (rules.length && !rules.includes(verifiedUser.role)) {
+        //     throw new ApiError(403, "You are not Authorised !!");
+        // }
         next();
     } catch (error) {
         next(error);

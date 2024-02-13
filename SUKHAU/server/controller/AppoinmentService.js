@@ -53,6 +53,7 @@ async function getAllAppointments() {
 
 // GetAppointment function
 async function getAppointment(id) {
+    console.log(id);
     return await Appointments.findById(id).populate('doctor patient');
 }
 
@@ -126,6 +127,7 @@ async function getDoctorAppointmentsById(user, filter) {
 
 // GetDoctorPatients function
 async function getDoctorPatients(user) {
+    console.log(user);
     const { userId } = user;
     const isDoctor = await Doctor.findById(userId);
     if (!isDoctor) {

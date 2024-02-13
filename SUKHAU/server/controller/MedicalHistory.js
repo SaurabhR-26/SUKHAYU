@@ -15,7 +15,6 @@ const createMadicalHistory = catchAsync(async (req, res) => {
 
 const getAllMadicalHistory = catchAsync(async (req, res) => {
     const result = await MadicalHistoryService.getAllMadicalHistory();
-    console.log("here")
     sendResponse(res, {
         statusCode: 200,
         message: 'Successfully Retrieve All Madical History !!',
