@@ -4,10 +4,10 @@ const httpStatus = require('http-status');
 const ApiError = require('../Error/ApiError');
 // const Appoinments=require('../model/')// Assuming you have defined the schemas for Appointments, Patient, and Paymen
 // CreateAppointment function
-const {Appointments}=require("../model/Appoinments");
-const {Doctor}=require("../model/Doctor");
-const {Patient}=require("../model/Patient");
-const {Payment}=require("../model/Payment")
+const Appointments=require("../model/Appoinments");
+const Doctor=require("../model/Doctor");
+const Patient=require("../model/Patient");
+const Payment=require("../model/Payment")
 async function createAppointment(user, payload) {
     const { patientInfo, payment } = payload;
     const isUserExist = await Patient.findById(user.userId);
