@@ -1,4 +1,4 @@
-const { MadicalHistoryModel } = require("./madicalHistory.model");
+const { MadicalHistoryModel } = require("../model/MedicalHistory");
 
 const createMadicalHistory = async (payload) => {
     const result = await MadicalHistoryModel.create(payload);
