@@ -1,23 +1,57 @@
 
 
-const {Doctor}=require('../model/Doctor');
+const Doctor=require('../model/Doctor');
 const {DoctorTimeSlot}=require("../model/DoctorTimeSlot");
 const {ScheduleDay}=require("../model/DoctorTimeSlot")
 const moment=require('moment')
 const createTimeSlot = async (user, payload) => {
     const { userId } = user;
+
+    // Check if the user is a doctor
     const isDoctor = await Doctor.findById(userId);
     if (!isDoctor) {
         throw new Error('Doctor Account is not found !!');
     }
-    const result = await DoctorTimeSlot.create({
-        day: payload.day,
-        doctorId: userId,
-        maximumPatient: payload.maximumPatient,
-        weekDay: payload.weekDay,
-        timeSlot: payload.timeSlot
-    });
-    return result;
+// console.log(isDoctor);
+    try {
+        // Create an array to store individual time slot IDs
+        const timeSlotIds = [];
+// console.log(payload.day);
+        // Iterate over each time slot in the payload
+        for (const slot of payload.timeSlot) {
+            // Create a new ScheduleDay document for each time slot
+            console.log(slot);
+            const newScheduleDay = new ScheduleDay({
+                startTime: slot.startTime,
+                endTime: slot.endTime
+            });
+
+            // Save the ScheduleDay document to the database
+            const savedScheduleDay = await newScheduleDay.save();
+
+            // Push the ID of the saved ScheduleDay document to the timeSlotIds array
+            // console.log(savedScheduleDay);
+            timeSlotIds.push(savedScheduleDay._id);
+        }
+console.log(timeSlotIds);
+        // Create a new DoctorTimeSlot document with the collected timeSlotIds
+        const doctorTimeSlot = new DoctorTimeSlot({
+            doctor: isDoctor._id,
+            day: payload.day,
+            maximumPatient: payload.maximumPatient,
+            weekDay: payload.weekDay,
+            timeSlot: timeSlotIds // Assign the array of ScheduleDay IDs to timeSlot field
+        });
+        console.log(doctorTimeSlot);
+ 
+        // Save the DoctorTimeSlot document to the database
+        const savedDoctorTimeSlot = await doctorTimeSlot.save();
+
+        return savedDoctorTimeSlot;
+    } catch (error) {
+        console.error('Error creating doctor time slot:', error);
+        throw new Error('Error creating doctor time slot');
+    }
 };
 
 const deleteTimeSlot = async (id) => {
@@ -27,25 +61,32 @@ const deleteTimeSlot = async (id) => {
 
 const getTimeSlot = async (id) => {
     const result = await DoctorTimeSlot.findById(id);
+    console.log(result);
     return result;
 };
 
 const getMyTimeSlot = async (user, filter) => {
     const { userId } = user;
+    
     const isDoctor = await Doctor.findById(userId);
     if (!isDoctor) {
         throw new Error('Doctor Account is not found !!');
     }
-    const whereCondition = { doctorId: userId };
+    // console.log(isDoctor);
+
+
+    const whereCondition = { doctor: userId };
     if (filter.day) {
         whereCondition.day = filter.day;
     }
+    console.log(whereCondition);
     const result = await DoctorTimeSlot.find(whereCondition).populate('timeSlot');
+    console.log(result);
     return result;
 };
 
 const getAllTimeSlot = async () => {
-    const result = await DoctorTimeSlot.find().populate('timeSlot').populate('doctor', 'firstName lastName');
+    const result = await DoctorTimeSlot.find({}).populate('timeSlot').populate('doctor', 'firstName lastName');
     return result;
 };
 

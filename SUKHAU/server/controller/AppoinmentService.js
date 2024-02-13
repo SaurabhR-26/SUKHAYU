@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 const httpStatus = require('http-status');
-const ApiError = require('../../../errors/apiError');
+const ApiError = require('../Error/ApiError');
 // const Appoinments=require('../model/')// Assuming you have defined the schemas for Appointments, Patient, and Paymen
 // CreateAppointment function
 const {Appointments}=require("../model/Appoinments");

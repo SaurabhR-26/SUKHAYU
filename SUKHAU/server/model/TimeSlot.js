@@ -10,7 +10,8 @@ const scheduleDaySchema = new mongoose.Schema({
 const doctorTimeSlotSchema = new mongoose.Schema({
     doctorId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Doctor'
+        ref: 'Doctor',
+        required:true
     },
     day: {
         type: String,

@@ -1,5 +1,5 @@
-import express from 'express';
-import { DoctorController } from '../controller/Doctor';
+const express =require('express');
+const  DoctorController  =require( '../controller/Doctor');
 
 const router = express.Router();
 
@@ -9,4 +9,5 @@ router.get('/:id', DoctorController.getDoctor);
 router.delete('/:id', DoctorController.deleteDoctor);
 router.patch('/:id', DoctorController.updateDoctor);
 
-export const DoctorRouter = router;
+module.exports =router;
+

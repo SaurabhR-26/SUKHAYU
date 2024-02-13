@@ -1,6 +1,6 @@
 const catchAsync = require("../shared/catchAsync");
 const sendResponse = require("../shared/sendResponse");
-const { AppointmentService } = require("./AppoinmentService");
+const AppointmentService  = require("./AppoinmentService");
 
 const createAppointment = catchAsync(async (req, res) => {
     const result = await AppointmentService.createAppointment(req.user, req.body);

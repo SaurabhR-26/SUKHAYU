@@ -10,7 +10,7 @@ const verifyToken = (token, secret) => {
     return jwt.verify(token, secret);
 };
 
-module.exports.JwtHelper = {
+module.exports = {
     verifyToken,
     createToken
 };

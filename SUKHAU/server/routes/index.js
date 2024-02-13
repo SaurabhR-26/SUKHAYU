@@ -1,14 +1,18 @@
 const AuthRouter  =require ('./auth');
+const DoctorRouter=require("./doctor")
+const PatientRouter=require("./patient")
+const AppointmentRouter=require("./appoinment")
+const DoctorTimeSlotRouter =require("./doctorTimeSlot")
 const express  =require('express');
 const router = express.Router();
-// import { PatientRouter } 
+
 
 
 const moduleRoutes = [
-    // {
-    //     path: '/doctor',
-    //     route: DoctorRouter,
-    // },
+    {
+        path: '/doctor',
+        route: DoctorRouter,
+    },
     // {
     //     path: '/review',
     //     route: ReviewRouter,
@@ -17,14 +21,14 @@ const moduleRoutes = [
         path: '/auth',
         route: AuthRouter,
     },
-    // {
-    //     path: '/patient',
-    //     route: PatientRouter,
-    // },
-    // {
-    //     path: '/appointment',
-    //     route: AppointmentRouter,
-    // },
+    {
+        path: '/patient',
+        route: PatientRouter,
+    },
+    {
+        path: '/appointment',
+        route: AppointmentRouter,
+    },
     // {
     //     path: '/prescription',
     //     route: PrescriptionRouter,
@@ -33,10 +37,10 @@ const moduleRoutes = [
     //     path: '/favourite',
     //     route: FavouriteRouter,
     // },
-    // {
-    //     path: '/timeslot',
-    //     route: DoctorTimeSlotRouter,
-    // },
+    {
+        path: '/timeslot',
+        route: DoctorTimeSlotRouter,
+    },
     // {
     //     path: '/blogs',
     //     route: BlogRoutes,

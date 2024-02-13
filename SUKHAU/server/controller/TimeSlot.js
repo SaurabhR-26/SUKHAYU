@@ -1,8 +1,9 @@
-import catchAsync from "../../../shared/catchAsync"
-import sendResponse from "../../../shared/sendResponse"
-import { TimeSlotService } from "./doctorTimeSlot.service"
+const catchAsync = require("../shared/catchAsync");
+const sendResponse = require("../shared/sendResponse");
+const  TimeSlotService  = require("./TimeSlotService");
 
 const createTimeSlot = catchAsync(async (req, res) => {
+  // console.log(req.body);
   const result = await TimeSlotService.createTimeSlot(req.user, req.body)
   sendResponse(res, {
     statusCode: 200,
@@ -13,6 +14,7 @@ const createTimeSlot = catchAsync(async (req, res) => {
 })
 
 const getAllTimeSlot = catchAsync(async (req, res) => {
+  console.log(req.body);
   const result = await TimeSlotService.getAllTimeSlot()
   sendResponse(res, {
     statusCode: 200,
@@ -23,6 +25,7 @@ const getAllTimeSlot = catchAsync(async (req, res) => {
 })
 
 const getMyTimeSlot = catchAsync(async (req, res) => {
+  console.log(req.user);
   const result = await TimeSlotService.getMyTimeSlot(req.user, req.query)
   sendResponse(res, {
     statusCode: 200,
@@ -34,6 +37,7 @@ const getMyTimeSlot = catchAsync(async (req, res) => {
 
 const getTimeSlot = catchAsync(async (req, res) => {
   const result = await TimeSlotService.getTimeSlot(req.params.id)
+  console.log(result);
   sendResponse(res, {
     statusCode: 200,
     message: "Successfully get Time Slot !!",
@@ -73,7 +77,7 @@ const getAppointmentTimeOfEachDoctor = catchAsync(async (req, res) => {
   })
 })
 
-export const doctorTimeSlotController = {
+module.exports = {
   getAllTimeSlot,
   getTimeSlot,
   updateTimeSlot,

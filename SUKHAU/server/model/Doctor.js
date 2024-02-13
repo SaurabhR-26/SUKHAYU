@@ -12,7 +12,8 @@ const DoctorSchema = new mongoose.Schema({
   biography: { type: String },
   clinicName: { type: String },
   clinicAddress: { type: String },
-  clinicImages: { type: String },
+  clinicImages: [{ type: String }],
+  
   city: { type: String },
   state: { type: String },
   country: { type: String },

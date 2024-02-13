@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const ApiError = require('../Error/ApiError');
 const httpStatus = require('http-status');
-const { JwtHelper } = require('../helpers/jwtHelpers');
+const  JwtHelper = require('../helpers/jwtHelpers');
 require("dotenv").config();
 // const config = require('../../../config');
 const { Secret } = require('jsonwebtoken');

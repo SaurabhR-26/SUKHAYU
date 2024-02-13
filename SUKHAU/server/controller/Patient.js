@@ -1,6 +1,6 @@
 const catchAsync = require("../shared/catchAsync");
 const sendResponse = require("../shared/sendResponse");
-const { PatientService } = require("./PatientService");
+const PatientService  = require("./PatientService");
 
 const createPatient = catchAsync(async (req, res) => {
     await PatientService.createPatient(req.body);

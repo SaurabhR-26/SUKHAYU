@@ -10,7 +10,12 @@ const AuthSchema = new mongoose.Schema({
 
   role: {type:String,
     required:true},
-});
+    userId:{
+      type:mongoose.Types.ObjectId,
+      required:true
+    }
+}
+);
 
 const Auth = mongoose.model('Auth', AuthSchema);
 

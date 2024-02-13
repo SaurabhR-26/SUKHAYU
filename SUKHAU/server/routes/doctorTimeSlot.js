@@ -1,16 +1,19 @@
-import express from 'express';
-import { auth } from '../../middlewares/auth';
-import { AuthUser } from '../../../enums';
-import { doctorTimeSlotController } from './doctorTimeSlot.controller';
+const express = require('express');
+const  auth  = require('../middlewares/auth');
+// const { AuthUser } = require('../../../enums');
+const  doctorTimeSlotController  = require('../controller/TimeSlot');
+
+// Your Node.js code using the required modules goes here
 
 const router = express.Router();
 
-router.get('/my-slot', auth(AuthUser.DOCTOR), doctorTimeSlotController.getMyTimeSlot);
-router.get('/:id', auth(AuthUser.DOCTOR), doctorTimeSlotController.getTimeSlot);
-router.get('/appointment-time/:id', auth(AuthUser.PATIENT, AuthUser.DOCTOR), doctorTimeSlotController.getAppointmentTimeOfEachDoctor);
-router.post('/create', auth(AuthUser.DOCTOR), doctorTimeSlotController.createTimeSlot);
+router.get('/my-slot',auth( "doctor"), doctorTimeSlotController.getMyTimeSlot);
+router.get('/:id', auth("doctor"), doctorTimeSlotController.getTimeSlot);
+router.get('/appointment-time/:id', auth("patient", "doctor"), doctorTimeSlotController.getAppointmentTimeOfEachDoctor);
+router.post('/create', auth("doctor"), doctorTimeSlotController.createTimeSlot);
 router.get('/', doctorTimeSlotController.getAllTimeSlot);
-router.patch('/', auth(AuthUser.DOCTOR), doctorTimeSlotController.updateTimeSlot);
-router.delete('/', auth(AuthUser.DOCTOR), doctorTimeSlotController.deleteTimeSlot);
+// router.get('/',(req,res)=>console.log("hellow "))
+router.patch('/', auth("doctor"), doctorTimeSlotController.updateTimeSlot);
+router.delete('/', auth("doctor"), doctorTimeSlotController.deleteTimeSlot);
 
-export const DoctorTimeSlotRouter = router;
+module.exports = router;

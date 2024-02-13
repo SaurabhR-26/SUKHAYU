@@ -1,12 +1,29 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import Doctor from "../model/Doctor"
+const  mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const Doctor =require( "../model/Doctor");
+const Auth = require('../model/Auth');
+
 
 async function createDoctor(payload) {
   try {
       const { password, ...othersData } = payload;
       const hashedPassword = await bcrypt.hash(password, 12);
-      const doctor = new Doctor({ ...othersData, password: hashedPassword });
+      const doctor = new Doctor({ ...othersData });
+
+      if (doctor) {
+        const auth = await Auth.create({
+            
+                email: doctor.email,
+                password:hashedPassword,
+                role: 'doctor',
+                userId: doctor.id
+        
+        });
+        // return {
+        //     doctor,
+        //     auth,
+        // };
+    }
       const savedDoctor = await doctor.save();
       return savedDoctor;
   } catch (error) {
@@ -62,6 +79,9 @@ async function getDoctor(id) {
 async function deleteDoctor(id) {
   try {
       const deletedDoctor = await Doctor.findByIdAndDelete(id);
+
+
+      
       if (!deletedDoctor) {
           throw new Error('Doctor not found');
       }
@@ -84,4 +104,8 @@ async function updateDoctor(id, payload) {
 }
 
 // Export the Doctor model and DoctorService functions
-export {  createDoctor, updateDoctor, deleteDoctor, getAllDoctors, getDoctor };
+module.exports= {  createDoctor, updateDoctor, deleteDoctor, getAllDoctors, getDoctor };
+// export default DoctorService;
+
+
+

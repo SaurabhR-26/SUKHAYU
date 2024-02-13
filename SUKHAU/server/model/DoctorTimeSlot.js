@@ -8,7 +8,7 @@ const ScheduleDaySchema = new mongoose.Schema({
 const ScheduleDay = mongoose.model('ScheduleDay', ScheduleDaySchema);
 
 const DoctorTimeSlotSchema = new mongoose.Schema({
-  doctor: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor' },
+  doctor: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor', required:true},
   day: { type: String, unique: true },
   timeSlot: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ScheduleDay' }],
   weekDay: String,
@@ -19,4 +19,4 @@ const DoctorTimeSlotSchema = new mongoose.Schema({
 
 const DoctorTimeSlot = mongoose.model('DoctorTimeSlot', DoctorTimeSlotSchema);
 
-module.exports = DoctorTimeSlot;
+module.exports = {DoctorTimeSlot,ScheduleDay};

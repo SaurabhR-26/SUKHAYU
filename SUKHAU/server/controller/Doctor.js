@@ -4,10 +4,12 @@ const catchAsync = require('../shared/catchAsync');
 const sendResponse = require('../shared/sendResponse');
 const Doctor = require('../model/Doctor.js'); // Import your Mongoose Doctor model
 const pick = require('../shared/pick');
-// const { IDoctorFiltersData, IDoctorOptions } = require('./doctor.interface');
+// const { IDoctorFiltersData, IDoctorOptions } = require('./doctor.interface')
+// console.log(DoctorService)
 
 const createDoctor = catchAsync(async (req, res) => {
-  await DoctorService.create(req.body); // Assuming DoctorService is a service using Mongoose to create a doctor
+  await DoctorService.createDoctor(req.body); // Assuming DoctorService is a service using Mongoose to create a doctor
+  
   sendResponse(res, {
     statusCode: httpStatus.OK,
     message: 'Successfully Doctor Created !!',

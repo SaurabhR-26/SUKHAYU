@@ -3,23 +3,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const httpStatus = require('http-status');
 const ApiError = require('../Error/ApiError');
-const {Auth}=require("../model/Auth")
-// Define Mongoose schema and model for Patient
-const patientSchema = new mongoose.Schema({
-    // Define schema fields
-    // Modify as needed to match the Patient schema from Prisma
-    // For example:
-    email: String,
-    // Add other fields as needed
-});
+const Auth=require("../model/Auth")
 
-const PatientModel = mongoose.model('Patient', patientSchema);
-
+const Patient=require('../model/Patient')
 // Function to create a patient using Mongoose
 const createPatient = async (payload) => {
     try {
         // Create patient
-        const patient = await PatientModel.create(payload);
+        const patient = await Patient.create(payload);
 
         // Hash password if provided
         if (payload.password) {
@@ -43,7 +34,7 @@ const createPatient = async (payload) => {
 // Function to get all patients using Mongoose
 const getAllPatients = async () => {
     try {
-        const patients = await PatientModel.find();
+        const patients = await Patient.find();
         return patients;
     } catch (error) {
         throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
@@ -53,7 +44,7 @@ const getAllPatients = async () => {
 // Function to get a patient by ID using Mongoose
 const getPatient = async (id) => {
     try {
-        const patient = await PatientModel.findById(id);
+        const patient = await Patient.findById(id);
         return patient;
     } catch (error) {
         throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
@@ -63,7 +54,7 @@ const getPatient = async (id) => {
 // Function to delete a patient by ID using Mongoose
 const deletePatient = async (id) => {
     try {
-        const patient = await PatientModel.findByIdAndDelete(id);
+        const patient = await Patient.findByIdAndDelete(id);
         // Delete associated auth if exists
         if (patient) {
             await Auth.findOneAndDelete({ email: patient.email });
@@ -77,7 +68,7 @@ const deletePatient = async (id) => {
 // Function to update a patient by ID using Mongoose
 const updatePatient = async (id, payload) => {
     try {
-        const patient = await PatientModel.findByIdAndUpdate(id, payload, { new: true });
+        const patient = await Patient.findByIdAndUpdate(id, payload, { new: true });
         return patient;
     } catch (error) {
         throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
