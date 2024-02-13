@@ -3,6 +3,7 @@ const DoctorRouter=require("./doctor")
 const PatientRouter=require("./patient")
 const AppointmentRouter=require("./appoinment")
 const DoctorTimeSlotRouter =require("./doctorTimeSlot")
+const MedicalHistory = require('./medicalHistory')
 const express  =require('express');
 const router = express.Router();
 
@@ -45,6 +46,10 @@ const moduleRoutes = [
     //     path: '/blogs',
     //     route: BlogRoutes,
     // }
+    {
+        path: '/medicalhistory',
+        route: MedicalHistory,
+    }
 ]
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
 module.exports= router;
