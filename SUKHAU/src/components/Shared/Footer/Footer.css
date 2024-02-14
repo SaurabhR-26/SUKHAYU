@@ -113,3 +113,8 @@
 .footer .social-icon ul li a:hover {
 	color: #09e5ab;
 }
+
+.footer-logo img{
+	margin-left: 20px;
+	border-radius: 10px;
+}
