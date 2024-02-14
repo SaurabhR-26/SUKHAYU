@@ -31,6 +31,8 @@ export default function useAuthCheck() {
             }
         }
     }, [patientData, doctorData, isError, dIsSuccess, pIsError, pIsSuccess]);
+       console.log(authChecked);
+console.log(data);
 
     return {
         authChecked,

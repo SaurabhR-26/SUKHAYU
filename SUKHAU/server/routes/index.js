@@ -4,6 +4,7 @@ const PatientRouter=require("./patient")
 const AppointmentRouter=require("./appoinment")
 const DoctorTimeSlotRouter =require("./doctorTimeSlot")
 const MedicalHistory = require('./medicalHistory')
+const PrescriptionRouter=require('./Prescription')
 const express  =require('express');
 const router = express.Router();
 
@@ -30,10 +31,10 @@ const moduleRoutes = [
         path: '/appointment',
         route: AppointmentRouter,
     },
-    // {
-    //     path: '/prescription',
-    //     route: PrescriptionRouter,
-    // },
+    {
+        path: '/prescription',
+        route: PrescriptionRouter,
+    },
     // {
     //     path: '/favourite',
     //     route: FavouriteRouter,

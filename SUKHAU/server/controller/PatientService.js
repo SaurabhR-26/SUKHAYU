@@ -45,6 +45,7 @@ const getAllPatients = async () => {
 const getPatient = async (id) => {
     try {
         const patient = await Patient.findById(id);
+        console.log(patient);
         return patient;
     } catch (error) {
         throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);

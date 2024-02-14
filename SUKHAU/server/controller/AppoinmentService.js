@@ -9,7 +9,8 @@ const Doctor=require("../model/Doctor");
 const Patient=require("../model/Patient");
 const Payment=require("../model/Payment")
 async function createAppointment(user, payload) {
-    const { patientInfo, payment } = payload;
+    console.log(payload);
+    const { patientInfo,  } = payload;
     const isUserExist = await Patient.findById(user.userId);
     if (!isUserExist) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Patient Account is not found !!');
@@ -28,20 +29,20 @@ async function createAppointment(user, payload) {
     const appointment = new Appointments(patientInfo);
     const savedAppointment = await appointment.save();
 
-    const { paymentMethod, paymentType } = payment;
-    const docFee = Number(isDoctorExist.price);
-    const vat = (15 / 100) * (docFee + 10);
-    const paymentData = {
-        appointmentId: savedAppointment.id,
-        bookingFee: 10,
-        paymentMethod: paymentMethod,
-        paymentType: paymentType,
-        vat: vat,
-        DoctorFee: docFee,
-        totalAmount: (vat + docFee)
-    };
-    const paymentRecord = new Payment(paymentData);
-    await paymentRecord.save();
+    // const { paymentMethod, paymentType } = payment;
+    // const docFee = Number(isDoctorExist.price);
+    // const vat = (15 / 100) * (docFee + 10);
+    // const paymentData = {
+    //     appointmentId: savedAppointment.id,
+    //     bookingFee: 10,
+    //     paymentMethod: paymentMethod,
+    //     paymentType: paymentType,
+    //     vat: vat,
+    //     DoctorFee: docFee,
+    //     totalAmount: (vat + docFee)
+    // };
+    // const paymentRecord = new Payment(paymentData);
+    // await paymentRecord.save();
 
     return savedAppointment;
 }
@@ -120,7 +121,7 @@ async function getDoctorAppointmentsById(user, filter) {
         const upcomingDate = moment().startOf('day').add(1, 'days').toDate();
         andCondition.scheduleDate = { $gte: upcomingDate };
     }
-
+console.log();
     const result = await Appointments.find(andCondition).populate('patient');
     return result;
 }
