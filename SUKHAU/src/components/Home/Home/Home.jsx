@@ -33,18 +33,8 @@ const Home = () => {
       <Gallery />
       <Footer />
       <div class="custom-container">
-        <a
-          href="https://mediafiles.botpress.cloud/e285beea-1d90-43b7-8f22-50f4549371e1/webchat/bot.html"
-          target="_blank"
-          class="absolute bottom-8 right-2"
-        >
-          <img src={chatimg} alt="" class="custom-image" />
-        </a>
-
-    
-
-      </div>
         <Chatbot />
+      </div>
     </>
   );
 };
