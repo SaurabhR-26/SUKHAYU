@@ -5,7 +5,7 @@ const JwtHelper = require("../helpers/jwtHelpers");
 const jwt = require("jsonwebtoken");
 require('dotenv').config()
 const auth = (...rules) => async (req, res, next) => {
-    // console.log(req.body);
+    // console.log(req.header);
     try {
         const token = req.headers.authorization;
         console.log(token);
