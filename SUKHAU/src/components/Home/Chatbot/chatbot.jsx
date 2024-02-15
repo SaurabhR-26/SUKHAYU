@@ -6,7 +6,7 @@ function Chatbot() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    if (open) {
+    if (true) {
       // Dynamically create a script element for Botpress Webchat
       const script = document.createElement("script");
       script.src = "https://cdn.botpress.cloud/webchat/v1/inject.js";
