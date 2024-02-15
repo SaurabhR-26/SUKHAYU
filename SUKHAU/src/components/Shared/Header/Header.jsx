@@ -48,11 +48,7 @@ const Header = () => {
           {data?.firstName + " " + data?.lastName}
         </h5>
         <p className="my-0">{data?.email}</p>
-<<<<<<< Updated upstream
         <Link to="/dashboard">Deshboard</Link>
-=======
-        <Link to="/admin/dashboard">Dashboard</Link>
->>>>>>> Stashed changes
       </div>
       <Button
         variant="outline-danger"
