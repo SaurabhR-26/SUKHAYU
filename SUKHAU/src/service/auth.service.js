@@ -7,8 +7,10 @@ export const setUserInfo = ({ accessToken }) => {
 
 export const getUserInfo = () => {
     const authToken = getFromLocalStorage(authKey);
+    console.log(authToken);
     if (authToken) {
         const decodedToken = decodeToken(authToken);
+        console.log(decodeToken);
         return decodedToken
     } else {
         return null

@@ -1,7 +1,9 @@
-import express from 'express';
-import { auth } from '../../middlewares/auth';
-import { AuthUser } from '../../../enums';
-import { PrescriptionController } from './prescription.controller';
+const express = require('express');
+const auth = require('../middlewares/auth'); // Corrected import syntax
+// const { AuthUser } = require('../../../enums'); // Corrected import syntax
+const  PrescriptionController = require('../controller/Prescription'); // Corrected import syntax
+
+// Now you can use these modules in your Node.js application
 
 const router = express.Router();
 
@@ -15,5 +17,4 @@ router.post('/create', auth('doctor','admin'), PrescriptionController.createPres
 
 router.delete('/:', auth('doctor', 'admin'), PrescriptionController.deletePrescription);
 router.patch('/', auth('doctor', 'admin'), PrescriptionController.updatePrescription);
-
-export const PrescriptionRouter = router;
+module.exports= router;

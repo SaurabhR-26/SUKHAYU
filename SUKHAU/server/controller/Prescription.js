@@ -1,6 +1,6 @@
-import catchAsync from "../shared/catchAsync"
-import sendResponse from "../shared/sendResponse"
-import { PrescriptionService } from "./PrescriptionService"
+const catchAsync = require("../shared/catchAsync");
+const sendResponse = require("../shared/sendResponse");
+const PrescriptionService  = require("./PrescriptionService");
 
 const createPrescription = catchAsync(async (req, res) => {
   await PrescriptionService.createPrescription(req.user, req.body)
@@ -74,7 +74,7 @@ const getAllPrescriptions = catchAsync(async (req, res) => {
   })
 })
 
-export const PrescriptionController = {
+module.exports= {
   createPrescription,
   getAllPrescriptions,
   getPrescriptionById,

@@ -2,20 +2,20 @@ const mongoose = require('mongoose');
 
 // Define the schema for the Appointments model
 const appointmentsSchema = new mongoose.Schema({
-    patientId: {
+    patient: {
         type: String,
         required: true
     },
-    patient: {
+    patientId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Patient',
         required: true
     },
-    doctorId: {
+  doctor  : {
         type: String,
         required: true
     },
-    doctor: {
+    doctorId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Doctor',
         required: true
