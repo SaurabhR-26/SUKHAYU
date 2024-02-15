@@ -12,6 +12,8 @@ import Service from "../Services/Service";
 import Gallery from "../Gallery/Gallery";
 import OurDoctors from "../OurDoctor/OurDoctors";
 import chatimg from "../../../images/doctor_chatbot.webp";
+import Chatbot from "../Chatbot/chatbot";
+
 import "./Home.css";
 
 const Home = () => {
@@ -38,7 +40,11 @@ const Home = () => {
         >
           <img src={chatimg} alt="" class="custom-image" />
         </a>
+
+    
+
       </div>
+        <Chatbot />
     </>
   );
 };
