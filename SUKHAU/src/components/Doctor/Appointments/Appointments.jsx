@@ -16,18 +16,31 @@ import {
   FaLocationArrow,
   FaPhoneAlt,
 } from "react-icons/fa";
+import { getBaseUrl } from "../../../helpers/config/envConfig";
+import axios from "axios";
+
+
 
 const Appointments = () => {
   const { data, isError, isLoading } = useGetDoctorAppointmentsQuery({});
   const [updateAppointment, { isError: updateIsError, isSuccess, error }] =
     useUpdateAppointmentMutation();
-  console.log("This is appointment data", data);
-  const updatedApppointmentStatus = (data, type) => {
+
+  const updatedApppointmentStatus = (data,id, type) => {
+    console.log("This is appointment data", data);
     const changeObj = {
       status: type,
     };
-    if (data.id) {
-      updateAppointment({ id: data.id, data: changeObj });
+    if (data[id]) {
+      // updateAppointment({ id: data.id, data: changeObj });
+      try{
+        axios.patch(`${getBaseUrl()}/appointment/${data[id]._id}`, { id: data[id]._id, data: changeObj });
+
+      }catch(err){
+        console.log(err)
+      }
+      
+
     }
   };
 
@@ -47,7 +60,7 @@ const Appointments = () => {
     content = (
       <>
         {data &&
-          data?.map((item) => (
+          data?.map((item,index) => (
             <div
               className="w-100 mb-3 rounded p-3"
               style={{ background: "#f8f9fa" }}
@@ -58,14 +71,14 @@ const Appointments = () => {
                     <img src={img} alt="" />
                   </Link>
                   <div className="patients-info">
-                    <h5>{item.patient}</h5>
+                    <h5>{item.patientId.firstName + " "+ item.patientId.lastName}</h5>
                     <div className="info">
                       <p>
                         <FaClock className="icon" />{" "}
                         {moment(item?.scheduleDate).format("MMM Do YY")}{" "}
                       </p>
                       <p>
-                        <FaLocationArrow className="icon" /> {item.address}
+                        <FaLocationArrow className="icon" /> {item.patientId.address}
                       </p>
                       <p>
                         <FaEnvelope className="icon" /> {item.email}
@@ -90,7 +103,8 @@ const Appointments = () => {
                         icon={<FaCheck />}
                         size="medium"
                         onClick={() =>
-                          updatedApppointmentStatus(data, "accept")
+                          updatedApppointmentStatus(data,index, "accept")
+
                         }
                       >
                         Accept
@@ -100,7 +114,7 @@ const Appointments = () => {
                         icon={<FaTimes />}
                         danger
                         onClick={() =>
-                          updatedApppointmentStatus(data, "cancel")
+                          updatedApppointmentStatus(data,index, "cancel")
                         }
                       >
                         Cancel

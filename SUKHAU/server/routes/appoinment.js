@@ -22,7 +22,7 @@ router.post('/create',auth('patient'), AppointmentController.createAppointment);
 router.get('/:id', AppointmentController.getAppointment);
 
 router.delete('/:id', AppointmentController.deleteAppointment);
-router.patch('/:id', auth("admin", 'doctor', 'patient'),AppointmentController.updateAppointment);
+router.patch('/:id',AppointmentController.updateAppointment);
 //doctor side
 router.patch('/doctor/update-appointment',auth('doctor'), AppointmentController.updateAppointmentByDoctor);
 

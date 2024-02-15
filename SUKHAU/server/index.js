@@ -10,7 +10,7 @@ const fileUpload = require("express-fileupload");
 require("dotenv").config();
 const port = 4000;
 app.use(
-  cors({
+  cors({  
     origin: "*",
     credentials: true,
   })
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   fileUpload({
-    useTempFiles: true,
+    useTempFiles: true, 
     tempFileDir: "/tmp/",
   })
 );

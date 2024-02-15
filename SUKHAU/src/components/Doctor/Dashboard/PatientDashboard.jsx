@@ -22,6 +22,7 @@ const PatientDashboard = () => {
       key: 1,
       width: 150,
       render: function (data) {
+        console.log(data);
         return (
           <div className="avatar avatar-sm mr-2 d-flex gap-2">
             <div>
@@ -147,7 +148,7 @@ const PatientDashboard = () => {
                 <img className="avatar-img rounded-circle" src={img} alt="" />
               </div>
               <div>
-                <h6 className="text-nowrap mb-0">{data?.doctor}</h6>
+                <h6 className="text-nowrap mb-0">{data?.doctorId?.firstName + " " + data?.doctorId?.lastName}</h6>
                 <p className="form-text">{data?.doctor?.designation}</p>
               </div>
             </div>

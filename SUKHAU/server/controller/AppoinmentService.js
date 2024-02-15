@@ -68,8 +68,8 @@ async function getPatientAppointmentById(user) {
     if (!isPatient) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Patient Account is not found !!');
     }
-    const result= await Appointments.find({ patientId: userId }).populate('doctor');
-    console.log(result);
+    const result= await Appointments.find({ patientId: userId }).populate('doctorId');
+    // console.log(result); 
     return result;
 
 }
@@ -106,7 +106,8 @@ async function deleteAppointment(id) {
 
 // UpdateAppointment function
 async function updateAppointment(id, payload) {
-    return await Appointments.findByIdAndUpdate(id, payload, { new: true });
+    console.log("payload",payload)
+    return await Appointments.findByIdAndUpdate(id, payload.data, { new: true });
 }
 
 // GetDoctorAppointmentsById function
@@ -128,7 +129,7 @@ async function getDoctorAppointmentsById(user, filter) {
         andCondition.scheduleDate = { $gte: upcomingDate };
     }
 console.log();
-    const result = await Appointments.find(andCondition).populate('patient');
+    const result = await Appointments.find(andCondition).populate('patientId');
     return result;
 }
 
