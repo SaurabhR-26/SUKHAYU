@@ -32,6 +32,7 @@ const getAllDoctors = catchAsync(async (req, res) => {
 
 const getDoctor = catchAsync(async (req, res) => {
   const result = await DoctorService.getDoctor(req.params.id);
+  console.log(result);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     message: 'Successfully Get Doctor !!',

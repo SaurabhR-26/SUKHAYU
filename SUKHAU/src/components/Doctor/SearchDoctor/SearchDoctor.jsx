@@ -53,8 +53,9 @@ const SearchDoctor = () => {
     const { data, isLoading, isError } = useGetDoctorsQuery({ ...query })
     const doctorsData = data?.doctors;
     const meta = data?.meta;
-
+// console.log(data);
     //what to render
+    // console.log(doctorsData);
     let content = null;
     if (isLoading) content = <>Loading ...</>;
     if (!isLoading && isError) content = <div>Something Went Wrong !</div>
@@ -63,6 +64,7 @@ const SearchDoctor = () => {
         <>
             {
                 doctorsData && doctorsData.map((item, id) => (
+                    
                     <SearchContent key={id + item.id} data={item} />
                 ))
             }

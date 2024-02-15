@@ -15,7 +15,7 @@ const doctorTimeSlotSchema = new mongoose.Schema({
     },
     day: {
         type: String,
-        unique: true
+       
     },
     timeSlot: [scheduleDaySchema], // Embedding ScheduleDay schema as an array
     weekDay: String,

@@ -18,6 +18,7 @@ import {
 } from "react-icons/fa";
 
 const Appointments = () => {
+<<<<<<< Updated upstream
   const { data, isError, isLoading } = useGetDoctorAppointmentsQuery({});
   const [updateAppointment, { isError: updateIsError, isSuccess, error }] =
     useUpdateAppointmentMutation();
@@ -28,6 +29,18 @@ const Appointments = () => {
     };
     if (data.id) {
       updateAppointment({ id: data.id, data: changeObj });
+=======
+    const { data, isError, isLoading } = useGetDoctorAppointmentsQuery({});
+    const [updateAppointment, { isError: updateIsError, isSuccess, error }] = useUpdateAppointmentMutation();
+console.log(data);
+    const updatedApppointmentStatus = (data, type) => {
+        const changeObj = {
+            status: type
+        }
+        if (data.id) {
+            updateAppointment({ id: data.id, data: changeObj })
+        }
+>>>>>>> Stashed changes
     }
   };
 

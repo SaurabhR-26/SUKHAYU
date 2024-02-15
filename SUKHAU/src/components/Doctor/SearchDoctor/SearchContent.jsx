@@ -9,6 +9,7 @@ import { FaLocationArrow, FaRegThumbsUp, FaDollarSign, FaComment } from "react-i
 
 const SearchContent = ({ data }) => {
     const services = data?.services?.split(',')
+    console.log(data._id);
     return (
         <div className="mb-4 rounded" style={{ background: '#f3f3f3' }}>
             <div className='d-flex p-3 justify-content-between'>
@@ -72,7 +73,7 @@ const SearchContent = ({ data }) => {
                     </div>
                     <div className="clinic-booking">
                         <Link to={`/doctors/profile/${data?.id}`} className="view-pro-btn">View Profile</Link>
-                        <Link to={`/booking/${data?.id}`} className="apt-btn">Book Appointment</Link>
+                        <Link to={`/booking/${data?._id}`} className="apt-btn">Book Appointment</Link>
                     </div>
                 </div>
             </div>

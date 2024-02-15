@@ -10,17 +10,18 @@ const Patient=require("../model/Patient");
 const Payment=require("../model/Payment")
 async function createAppointment(user, payload) {
     console.log(payload);
-    const { patientInfo,  } = payload;
+    const { patientInfo, Payment} = payload;
     const isUserExist = await Patient.findById(user.userId);
     if (!isUserExist) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Patient Account is not found !!');
     }
-
+console.log(`{patientInfo}`);
+console.log(patientInfo);
     const isDoctorExist = await Doctor.findById(patientInfo.doctorId);
     if (!isDoctorExist) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Doctor Account is not found !!');
     }
-
+    console.log(` is patient exist${isDoctorExist}`);
     if (isUserExist) {
         patientInfo.patientId = isUserExist.id;
         patientInfo.status = 'pending';
@@ -61,11 +62,16 @@ async function getAppointment(id) {
 // GetPatientAppointmentById function
 async function getPatientAppointmentById(user) {
     const { userId } = user;
+    // console.log(userId);
     const isPatient = await Patient.findById(userId);
+    // console.log(isPatient);
     if (!isPatient) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Patient Account is not found !!');
     }
-    return await Appointments.find({ patientId: userId }).populate('doctor');
+    const result= await Appointments.find({ patientId: userId }).populate('doctor');
+    console.log(result);
+    return result;
+
 }
 
 // GetPaymentInfoViaAppintmentId function
@@ -143,7 +149,9 @@ async function getDoctorPatients(user) {
 // UpdateAppointmentByDoctor function
 async function updateAppointmentByDoctor(user, payload) {
     const { userId } = user;
+    console.log(userId);
     const isDoctor = await Doctor.findById(userId);
+    console.log(isDoctor);
     if (!isDoctor) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Doctor Account is not found !!');
     }

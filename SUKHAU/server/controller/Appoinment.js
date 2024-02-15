@@ -53,8 +53,9 @@ const updateAppointment = catchAsync(async (req, res) => {
 });
 
 const getPatientAppointmentById = catchAsync(async (req, res) => {
-    console.log(req.user);
+    // console.log(req.user);
     const result = await AppointmentService.getPatientAppointmentById(req.user);
+    // console.log(result);
     sendResponse(res, {
         statusCode: 200,
         message: 'Successfully Updated Appointment !!',
@@ -74,7 +75,9 @@ const getDoctorAppointmentsById = catchAsync(async (req, res) => {
 });
 
 const updateAppointmentByDoctor = catchAsync(async (req, res) => {
+    console.log(req.body);
     const result = await AppointmentService.updateAppointmentByDoctor(req.user, req.body);
+    console.log(result);
     sendResponse(res, {
         statusCode: 200,
         message: 'Successfully updated apppointments !!',

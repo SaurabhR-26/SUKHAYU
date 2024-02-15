@@ -116,7 +116,9 @@ const updateTimeSlot = async (user, id, payload) => {
 };
 
 const getAppointmentTimeOfEachDoctor = async (id, filter) => {
-    const doctorTimeSlot = await DoctorTimeSlot.find({ doctorId: id }).populate('timeSlot');
+
+    console.log(`time slot: ${id}`);
+    const doctorTimeSlot = await DoctorTimeSlot.find({ doctor: id }).populate('timeSlot');
     const allSlots = doctorTimeSlot.map((item) => {
         const { day, timeSlot } = item;
         return { day, timeSlot };
