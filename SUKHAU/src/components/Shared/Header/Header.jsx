@@ -8,6 +8,7 @@ import img2 from "../../../images/doc/doctor 3.jpg";
 import { Button, Popover, message } from "antd";
 import { loggedOut } from "../../../service/auth.service";
 import { FaBars } from "react-icons/fa";
+import emergency from "../../Home/EmergencyAmbulance/emergency";
 
 const Header = () => {
   const { authChecked, data } = useAuthCheck();
@@ -47,7 +48,11 @@ const Header = () => {
           {data?.firstName + " " + data?.lastName}
         </h5>
         <p className="my-0">{data?.email}</p>
+<<<<<<< Updated upstream
         <Link to="/dashboard">Deshboard</Link>
+=======
+        <Link to="/admin/dashboard">Dashboard</Link>
+>>>>>>> Stashed changes
       </div>
       <Button
         variant="outline-danger"
@@ -138,6 +143,18 @@ const Header = () => {
                   Daily Updates
                 </NavLink>
               </li>
+
+              <li>
+                <NavLink
+                  to={"/emergency"}
+                  className={({ isActive }) =>
+                    isActive ? "nav-link scrollto active" : ""
+                  }
+                >
+                  Emergency
+                </NavLink>
+              </li>
+
               {!isLoggedIn && (
                 <li>
                   <Link to={"/login"} className="nav-link scrollto">

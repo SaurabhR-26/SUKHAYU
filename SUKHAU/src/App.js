@@ -3,6 +3,7 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './components/Home/Home/Home';
 import SignInForm from './components/Login/SignInForm';
+// import SignInForm from './components/Loginform/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import DoctorBooking from './components/Booking/DoctorBooking/DoctorBooking';
 import BookingSuccess from './components/Booking/BookingSuccess';
@@ -34,6 +35,7 @@ import Contact from './components/Contact/Contact';
 import About from './components/About/About';
 import Service from './components/Service/Service';
 import Dashboard from './components/Doctor/Dashboard/Dashboard';
+import Emergency from './components/Home/EmergencyAmbulance/emergency';
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -43,6 +45,7 @@ const router = createBrowserRouter([
   { path: "/contact", element: <Contact /> },
   { path: "/about", element: <About /> },
   { path: "/service", element: <Service /> },
+  // { path: "/login", element: <SignInForm /> },
   { path: "/login", element: <SignInForm /> },
 
   { path: "/doctors", element: <SearchDoctor /> },
@@ -50,6 +53,7 @@ const router = createBrowserRouter([
 
   { path: '/doctors', element: <SearchDoctor /> },
   { path: '/doctors/profile/:id', element: <DoctorProfile /> },
+  { path: '/emergency', element: <Emergency /> },
   
   { path: '/dashboard', element: <Dashboard /> },
   { path: '/dashboard/my-patients', element: <MyPatients /> },

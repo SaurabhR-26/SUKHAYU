@@ -1,7 +1,7 @@
 import React from "react";
 import * as Components from './Components';
 
-function App() {
+function Login() {
     const [signIn, toggle] = React.useState(true);
      return(
          <Components.Container>
@@ -55,4 +55,4 @@ function App() {
      )
 }
 
-export default App;
+export default Login;

@@ -21,7 +21,7 @@ const Home = () => {
     <>
       <Header />
       <HeroSection />
-
+  
       <InfoPage />
       <Service />
       <ClinicAndSpecialities />
