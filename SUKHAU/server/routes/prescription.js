@@ -17,8 +17,4 @@ router.post('/create', auth('doctor','admin'), PrescriptionController.createPres
 
 router.delete('/:', auth('doctor', 'admin'), PrescriptionController.deletePrescription);
 router.patch('/', auth('doctor', 'admin'), PrescriptionController.updatePrescription);
-<<<<<<< Updated upstream
 module.exports= router;
-=======
-module.exports= router;
->>>>>>> Stashed changes
