@@ -76,6 +76,12 @@ const DashboardSidebar = () => {
                                 </NavLink>
                             </li>
                             <li>
+                                <NavLink to={'/dashboard/reminders'}>
+                                    <FaSignOutAlt className="icon" />
+                                    <span>Reminders</span>
+                                </NavLink>
+                            </li>
+                            <li>
                                 <NavLink to={'/'}>
                                     <FaSignOutAlt className="icon" />
                                     <span>Logout</span>

@@ -36,11 +36,14 @@ import About from './components/About/About';
 import Service from './components/Service/Service';
 import Dashboard from './components/Doctor/Dashboard/Dashboard';
 import Emergency from './components/Home/EmergencyAmbulance/emergency';
+import Reminders from "./components/patient/Reminders";
+import PatDashboard from "./components/patient/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   // { path: '/blog', element: <Blog /> },
   // { path: "/news", element: <News /> },
+  { path: "/dashboard/reminders", element: <PatDashboard/>  },
   { path: "/blog/:id", element: <BlogDetails /> },
   { path: "/contact", element: <Contact /> },
   { path: "/about", element: <About /> },

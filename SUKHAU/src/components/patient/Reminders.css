@@ -1,0 +1,69 @@
+/* Reminders.css */
+
+.user-management {
+    margin: 20px;
+}
+
+.add-user-form, .medicine-form {
+    width: 100%;
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.add-user-form input, .medicine-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-user-form button, .medicine-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-user-form button:hover, .medicine-form button:hover {
+    background-color: #0056b3;
+}
+
+.user-list {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.user-list h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.user-list li {
+    list-style: none;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.user-list li button {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-list li button:hover {
+    background-color: #c82333;
+}
