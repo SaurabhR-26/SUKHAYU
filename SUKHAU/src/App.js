@@ -36,12 +36,10 @@ import About from './components/About/About';
 import Service from './components/Service/Service';
 import Dashboard from './components/Doctor/Dashboard/Dashboard';
 import Emergency from './components/Home/EmergencyAmbulance/emergency';
-<<<<<<< Updated upstream
 import Reminders from "./components/patient/Reminders";
 import PatDashboard from "./components/patient/Dashboard/Dashboard";
-=======
 import SignUpData from "./components/Login/SignUpData";
->>>>>>> Stashed changes
+
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
