@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./index.css";
+import "./Header.css";
 import useAuthCheck from "../../../redux/hooks/useAuthCheck";
 // import TopHeader from "../TopHeader/TopHeader";
 import { Link, NavLink } from "react-router-dom";
@@ -139,18 +139,19 @@ const Header = () => {
                   Daily Updates
                 </NavLink>
               </li>
-
-              <li>
-                <NavLink
-                  to={"/emergency"}
-                  className={({ isActive }) =>
-                    isActive ? "nav-link scrollto active" : ""
-                  }
-                >
-                  Emergency
-                </NavLink>
-              </li>
-
+              <div className="emergency">
+                <li>
+                  <NavLink
+                    to={"/emergency"}
+                    className={({ isActive }) =>
+                      isActive ? "nav-link scrollto active" : ""
+                    }
+                  >
+                    <span>Emergency</span>
+                    <span>Emergency</span>
+                  </NavLink>
+                </li>
+              </div>
               {!isLoggedIn && (
                 <li>
                   <Link to={"/login"} className="nav-link scrollto">
