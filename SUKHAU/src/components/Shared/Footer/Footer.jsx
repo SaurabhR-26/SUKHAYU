@@ -101,20 +101,18 @@ const Footer = () => {
                     <span>
                       <i className="fas fa-map-marker-alt"></i>
                     </span>
-                    </div>
-                    {/* <p>
-                      {" "}
-                      121, Mirzapure Union office,
-                      <br /> Sylhet, Bangladesh 03214{" "}
-                    </p>
+                  </div>
                   <p>
-                    <i className="fas fa-phone-alt"></i>
-                    +88 017 51 040425
+                    {" "}
+                    Vishrambag
+                    <br /> Sangli,India.{" "}
+                  </p>
+                  <p>
+                    <i className="fas fa-phone-alt">12345678999</i>
                   </p>
                   <p className="mb-0">
-                    <i className="fas fa-envelope"></i>
-                    ujjalzaman@gmail.com
-                  </p> */}
+                    <i className="fas fa-envelope"> omkar@gmail.com</i>
+                  </p>
                 </div>
               </div>
             </div>

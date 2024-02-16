@@ -12,8 +12,10 @@ const HeroSection = () => {
           <h2>Your Health</h2>
           <h1>IS OUR PRIORITY</h1>
           <small>
-            A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium
-            quisquam aperiam maiores sunt fugit, deserunt rem suscipit placeat.
+            Empathy is our prescription, expertise is our remedy.
+            <br /> At Sukhayu, we believe in healing not just the ailment, but
+            the patient. Because in our care,
+            <br /> you're not just a case you're a journey towards well-being
           </small>
         </div>
         <Link to={"/doctors"} className="btn-get-started scrollto">

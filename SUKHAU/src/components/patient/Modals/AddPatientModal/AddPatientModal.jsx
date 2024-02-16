@@ -52,9 +52,9 @@ const AddPatientModal = ({ closeModal }) => {
     boolValue |= days.Thursday;
     boolValue |= days.Friday;
     boolValue |= days.Saturday;
-    if(medicineName == "" || dosage == "" || boolValue == false){
-        setError("Please Do Not Set Any Medicine Field Blank")
-        return;
+    if (medicineName == "" || dosage == "" || boolValue == false) {
+      setError("Please Do Not Set Any Medicine Field Blank");
+      return;
     }
     const newMedicine = {
       medicineName,
@@ -77,32 +77,44 @@ const AddPatientModal = ({ closeModal }) => {
   };
 
   const handleSubmit = () => {
-    if(name == "" || phoneNumber == ""){
-        setError("Please Provide A Valid Name and Phone Number")
+    if (name == "" || phoneNumber == "") {
+      setError("Please Provide A Valid Name and Phone Number");
     } else {
-        const newMedicineList = medicines.map(element => {
-            let dayString = "";
-            if(element.days.Sunday == true) dayString +="S";
-            if(element.days.Monday == true) dayString +="M";
-            if(element.days.Tuesday == true) dayString +="T";
-            if(element.days.Wednesday == true) dayString +="W";
-            if(element.days.Thursday == true) dayString +="Th";
-            if(element.days.Friday == true) dayString +="F";
-            if(element.days.Saturday == true) dayString +="Sa";
-            return {medicineName : element.medicineName , dosage : element.dosage , days : dayString};
+      const newMedicineList = medicines.map((element) => {
+        let dayString = "";
+        if (element.days.Sunday == true) dayString += "S";
+        if (element.days.Monday == true) dayString += "M";
+        if (element.days.Tuesday == true) dayString += "T";
+        if (element.days.Wednesday == true) dayString += "W";
+        if (element.days.Thursday == true) dayString += "Th";
+        if (element.days.Friday == true) dayString += "F";
+        if (element.days.Saturday == true) dayString += "Sa";
+        return {
+          medicineName: element.medicineName,
+          dosage: element.dosage,
+          days: dayString,
+        };
+      });
+      axios
+        .post("http://localhost:5000/add-user", {
+          name,
+          phoneNumber,
+          medicines: newMedicineList,
         })
-        axios.post("http://localhost:5000/add-user", {name,phoneNumber,medicines:newMedicineList})
-        .then(response => {
-            if(response.status == 500 || response.data.message == "Phone Number Already Registered"){
-                setError(response.data.message);
-            } else {
-                setError("")
-                closeModal();
-            }
+        .then((response) => {
+          if (
+            response.status == 500 ||
+            response.data.message == "Phone Number Already Registered"
+          ) {
+            setError(response.data.message);
+          } else {
+            setError("");
+            closeModal();
+          }
         })
-        .catch(err => {
-            setError(err.message);
-        })
+        .catch((err) => {
+          setError(err.message);
+        });
     }
   };
 
@@ -115,7 +127,7 @@ const AddPatientModal = ({ closeModal }) => {
   return (
     <div className="modal-container">
       <div className="modal-header">
-        <h2>Add Patient</h2>
+        <h2 style={{ paddingLeft: "10px" }}>Add Patient</h2>
         <button onClick={closeModal} className="modal-close-btn">
           &times;
         </button>
@@ -142,19 +154,35 @@ const AddPatientModal = ({ closeModal }) => {
           </div>
           <p className="medicineHeader">Medicines Added : </p>
           <div className="medicinesContainer">
-            {medicines.map((element,index) => {
-                let dayString = "";
-                if(element.days.Sunday == true) dayString +="S";
-                if(element.days.Monday == true) dayString +="M";
-                if(element.days.Tuesday == true) dayString +="T";
-                if(element.days.Wednesday == true) dayString +="W";
-                if(element.days.Thursday == true) dayString +="Th";
-                if(element.days.Friday == true) dayString +="F";
-                if(element.days.Saturday == true) dayString +="Sa";
-                return <div className="medicineList" key={index}><b>Name</b> : {element.medicineName} <b>Dosage</b> : {element.dosage} <b>Days</b> : {dayString} <u className="deleteButton" onClick={() => handleDelete(index)}>delete</u></div>
+            {medicines.map((element, index) => {
+              let dayString = "";
+              if (element.days.Sunday == true) dayString += "S";
+              if (element.days.Monday == true) dayString += "M";
+              if (element.days.Tuesday == true) dayString += "T";
+              if (element.days.Wednesday == true) dayString += "W";
+              if (element.days.Thursday == true) dayString += "Th";
+              if (element.days.Friday == true) dayString += "F";
+              if (element.days.Saturday == true) dayString += "Sa";
+              return (
+                <div className="medicineList" key={index}>
+                  <b>Name</b> : {element.medicineName} <b>Dosage</b> :{" "}
+                  {element.dosage} <b>Days</b> : {dayString}{" "}
+                  <u
+                    className="deleteButton"
+                    onClick={() => handleDelete(index)}
+                  >
+                    delete
+                  </u>
+                </div>
+              );
             })}
           </div>
-          <p className="medicineHeader"><u>Add new medicines by inserting values on respective fields and click on <i>Add Medicine</i> button</u></p>
+          <p className="medicineHeader">
+            <u>
+              Add new medicines by inserting values on respective fields and
+              click on <i>Add Medicine</i> button
+            </u>
+          </p>
           <div className="form-group">
             <label htmlFor="medicineName">Medicine Name:</label>
             <input
@@ -176,87 +204,87 @@ const AddPatientModal = ({ closeModal }) => {
           <div className="form-group">
             <label>Days:</label>
             <div className="days-container">
-            <div>
+              <div>
                 <label htmlFor="Sunday">Sunday</label>
                 <input
-                type="checkbox"
-                id="Sunday"
-                name="Sunday"
-                checked={days.Sunday}
-                onChange={handleChangeDays}
+                  type="checkbox"
+                  id="Sunday"
+                  name="Sunday"
+                  checked={days.Sunday}
+                  onChange={handleChangeDays}
                 />
-            </div>
-            <div>
+              </div>
+              <div>
                 <label htmlFor="Monday">Monday</label>
                 <input
-                type="checkbox"
-                id="Monday"
-                name="Monday"
-                checked={days.Monday}
-                onChange={handleChangeDays}
+                  type="checkbox"
+                  id="Monday"
+                  name="Monday"
+                  checked={days.Monday}
+                  onChange={handleChangeDays}
                 />
-            </div>
-            <div>
+              </div>
+              <div>
                 <label htmlFor="Tuesday">Tuesday</label>
                 <input
-                type="checkbox"
-                id="Tuesday"
-                name="Tuesday"
-                checked={days.Tuesday}
-                onChange={handleChangeDays}
+                  type="checkbox"
+                  id="Tuesday"
+                  name="Tuesday"
+                  checked={days.Tuesday}
+                  onChange={handleChangeDays}
                 />
-            </div>
-            <div>
+              </div>
+              <div>
                 <label htmlFor="Wednesday">Wednesday</label>
                 <input
-                type="checkbox"
-                id="Wednesday"
-                name="Wednesday"
-                checked={days.Wednesday}
-                onChange={handleChangeDays}
+                  type="checkbox"
+                  id="Wednesday"
+                  name="Wednesday"
+                  checked={days.Wednesday}
+                  onChange={handleChangeDays}
                 />
-            </div>
-            <div>
+              </div>
+              <div>
                 <label htmlFor="Thursday">Thursday</label>
                 <input
-                type="checkbox"
-                id="Thursday"
-                name="Thursday"
-                checked={days.Thursday}
-                onChange={handleChangeDays}
+                  type="checkbox"
+                  id="Thursday"
+                  name="Thursday"
+                  checked={days.Thursday}
+                  onChange={handleChangeDays}
                 />
-            </div>
-            <div>
+              </div>
+              <div>
                 <label htmlFor="Friday">Friday</label>
                 <input
-                type="checkbox"
-                id="Friday"
-                name="Friday"
-                checked={days.Friday}
-                onChange={handleChangeDays}
+                  type="checkbox"
+                  id="Friday"
+                  name="Friday"
+                  checked={days.Friday}
+                  onChange={handleChangeDays}
                 />
-            </div>
-            <div>
+              </div>
+              <div>
                 <label htmlFor="Saturday">Saturday</label>
                 <input
-                type="checkbox"
-                id="Saturday"
-                name="Saturday"
-                checked={days.Saturday}
-                onChange={handleChangeDays}
+                  type="checkbox"
+                  id="Saturday"
+                  name="Saturday"
+                  checked={days.Saturday}
+                  onChange={handleChangeDays}
                 />
-            </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="buttonList">
-            <button onClick={handleAddMedicine}>Add Medicine</button>
-            <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleAddMedicine}>Add Medicine</button>
+          <button onClick={handleSubmit}>Submit</button>
         </div>
         <div className="errorTag">{error}</div>
       </div>
     </div>
   );
-}
+};
 
 export default AddPatientModal;
