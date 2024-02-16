@@ -8,7 +8,7 @@ import img2 from "../../../images/doc/doctor 3.jpg";
 import { Button, Popover, message } from "antd";
 import { loggedOut } from "../../../service/auth.service";
 import { FaBars } from "react-icons/fa";
-import emergency from "../../Home/EmergencyAmbulance/emergency";
+import Emergency from "../../Home/EmergencyAmbulance/Emergency";
 
 const Header = () => {
   const { authChecked, data } = useAuthCheck();

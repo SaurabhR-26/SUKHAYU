@@ -4,7 +4,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./emergency.css";
-export default function emergency() {
+export default function Emergency() {
   const [add, setAdd] = useState("");
   // `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
 

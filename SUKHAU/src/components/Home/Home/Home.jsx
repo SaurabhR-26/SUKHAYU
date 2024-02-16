@@ -13,18 +13,17 @@ import Gallery from "../Gallery/Gallery";
 import OurDoctors from "../OurDoctor/OurDoctors";
 import chatimg from "../../../images/doctor_chatbot.webp";
 import Chatbot from "../Chatbot/chatbot";
-import { motion, useScroll } from "framer-motion";
 import "./Home.css";
 
 const Home = () => {
-  const { scrollYProgress } = useScroll();
+  // const { scrollYProgress } = useScroll();
 
   return (
     <>
-      <motion.div
+      {/* <motion.div
         className="fixed p-1 top-0 z-1 left-0 right-0 h-3 bg-red-500 animate-none origin-top-left"
         style={{ scaleX: scrollYProgress }}
-      />
+      /> */}
 
       <Header />
       <HeroSection />
