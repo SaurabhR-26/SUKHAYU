@@ -23,12 +23,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   fileUpload({
-    useTempFiles: true, 
+    useTempFiles: true,  
     tempFileDir: "/tmp/",
   })
 );
 
-//db connect
+//db connect 
 
 //cloud connect
 // cloudinaryConnect();

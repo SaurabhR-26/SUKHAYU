@@ -9,9 +9,12 @@ import moment from "moment";
 import { Button, message } from "antd";
 import CustomTable from "../../../UI/component/CustomTable";
 import { Tabs } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
   const [sortBy, setSortBy] = useState("upcoming");
+  const [val,Setval] = useState(0);
+  const navigate = useNavigate();
   const { data, refetch, isLoading } = useGetDoctorAppointmentsQuery({
     sortBy,
   });
@@ -31,6 +34,7 @@ const DashboardPage = () => {
     if (data.id) {
       updateAppointment({ id: data.id, data: changeObj });
     }
+   navigate("/doctor/appointments")
   };
 
   useEffect(() => {
@@ -40,7 +44,7 @@ const DashboardPage = () => {
     if (isError) {
       message.error(error?.data?.message);
     }
-  }, [isSuccess, isError, error]);
+  }, [isSuccess, isError, error,val]);
 
   const upcomingColumns = [
     {

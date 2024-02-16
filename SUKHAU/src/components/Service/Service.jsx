@@ -25,19 +25,60 @@ const Service = () => {
 
       <div class="container" style={{ marginTop: 200, marginBottom: 100 }}>
         <div class="row">
-          {
-            Array(6).fill(null).map((_item, id) => (
-              <div class="col-lg-4 col-md-6 col-sm-6" key={id + 6}>
+          
+            
+              <div class="col-lg-4 col-md-6 col-sm-6" >
                 <div class="card shadow border-0 mb-5">
                   <img src={img} alt="" class="img-fluid" style={{ maxHeight: '17rem', objectFit: 'cover' }} />
                   <div class="p-2">
-                    <h4 class="mt-4 mb-2">Child care</h4>
+                    <h4 class="mt-4 mb-2">Appointment Booking</h4>
                     <p class="mb-4">Saepe nulla praesentium eaque omnis perferendis a doloremque.</p>
                   </div>
                 </div>
               </div>
-            ))
-          }
+            
+
+              <div class="col-lg-4 col-md-6 col-sm-6" >
+                <div class="card shadow border-0 mb-5">
+                  <img src={img} alt="" class="img-fluid" style={{ maxHeight: '17rem', objectFit: 'cover' }} />
+                  <div class="p-2">
+                    <h4 class="mt-4 mb-2">Emergency</h4>
+                    <p class="mb-4">Saepe nulla praesentium eaque omnis perferendis a doloremque.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 col-sm-6" >
+                <div class="card shadow border-0 mb-5">
+                  <img src={img} alt="" class="img-fluid" style={{ maxHeight: '17rem', objectFit: 'cover' }} />
+                  <div class="p-2">
+                    <h4 class="mt-4 mb-2">Interactive Chatbot</h4>
+                    <p class="mb-4">Saepe nulla praesentium eaque omnis perferendis a doloremque.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 col-sm-6" >
+                <div class="card shadow border-0 mb-5">
+                  <img src={img} alt="" class="img-fluid" style={{ maxHeight: '17rem', objectFit: 'cover' }} />
+                  <div class="p-2">
+                    <h4 class="mt-4 mb-2">Daily update</h4>
+                    <p class="mb-4">Saepe nulla praesentium eaque omnis perferendis a doloremque.</p>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="col-lg-4 col-md-6 col-sm-6" >
+                <div class="card shadow border-0 mb-5">
+                  <img src={img} alt="" class="img-fluid" style={{ maxHeight: '17rem', objectFit: 'cover' }} />
+                  <div class="p-2">
+                    <h4 class="mt-4 mb-2">Government Schemes</h4>
+                    <p class="mb-4">Saepe nulla praesentium eaque omnis perferendis a doloremque.</p>
+                  </div>
+                </div>
+              </div>
+          
         </div>
       </div>
 

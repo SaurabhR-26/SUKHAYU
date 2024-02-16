@@ -176,7 +176,7 @@ const Header = () => {
             <FaBars className="mobile-nav-toggle" />
           </nav>
 
-          <Link to={"/appointment"} className="appointment-btn scrollto">
+          <Link to={"/doctors"} className="appointment-btn scrollto">
             <span className="d-none d-md-inline">Make an</span> Appointment
           </Link>
         </div>

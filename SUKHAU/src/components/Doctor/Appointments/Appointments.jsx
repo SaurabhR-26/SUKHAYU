@@ -27,7 +27,7 @@ const Appointments = () => {
     useUpdateAppointmentMutation();
 
   const updatedApppointmentStatus = (data,id, type) => {
-    console.log("This is appointment data", data);
+    // console.log("This is appointment data", data);
     const changeObj = {
       status: type,
     };
@@ -35,7 +35,7 @@ const Appointments = () => {
       // updateAppointment({ id: data.id, data: changeObj });
       try{
         axios.patch(`${getBaseUrl()}/appointment/${data[id]._id}`, { id: data[id]._id, data: changeObj });
-
+        window.location.reload();
       }catch(err){
         console.log(err)
       }
