@@ -1,11 +1,11 @@
-const AuthRouter  =require ('./auth');
-const DoctorRouter=require("./doctor")
-const PatientRouter=require("./patient")
-const AppointmentRouter=require("./appoinment")
-const DoctorTimeSlotRouter =require("./doctorTimeSlot")
+const AuthRouter = require('./auth');
+const DoctorRouter = require("./doctor")
+const PatientRouter = require("./patient")
+const AppointmentRouter = require("./appoinment")
+const DoctorTimeSlotRouter = require("./doctorTimeSlot")
 const MedicalHistory = require('./medicalHistory')
-const PrescriptionRouter=require('./Prescription')
-const express  =require('express');
+const PrescriptionRouter = require('./Prescription')
+const express = require('express');
 const router = express.Router();
 
 
@@ -53,4 +53,4 @@ const moduleRoutes = [
     }
 ]
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
-module.exports= router;
+module.exports = router;

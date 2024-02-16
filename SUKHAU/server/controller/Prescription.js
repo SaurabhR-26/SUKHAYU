@@ -1,8 +1,9 @@
 const catchAsync = require("../shared/catchAsync");
 const sendResponse = require("../shared/sendResponse");
-const PrescriptionService  = require("./PrescriptionService");
+const PrescriptionService = require("./PrescriptionService");
 
 const createPrescription = catchAsync(async (req, res) => {
+  console.log(req.user)
   await PrescriptionService.createPrescription(req.user, req.body)
   sendResponse(res, {
     statusCode: 200,
@@ -66,6 +67,7 @@ const getPrescriptionById = catchAsync(async (req, res) => {
 
 const getAllPrescriptions = catchAsync(async (req, res) => {
   const result = await PrescriptionService.getAllPrescriptions()
+  console.log("this is " + result)
   sendResponse(res, {
     statusCode: 200,
     message: "Successfully Retrieve All Prescription !!",
@@ -74,7 +76,7 @@ const getAllPrescriptions = catchAsync(async (req, res) => {
   })
 })
 
-module.exports= {
+module.exports = {
   createPrescription,
   getAllPrescriptions,
   getPrescriptionById,

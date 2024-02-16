@@ -8,46 +8,51 @@ const Medicine = require('../model/Medicine');
 const bcrypt = require('bcrypt');
 
 const createPrescription = async (user, payload) => {
-    const { userId } = user;
-    const isDoctor = await Doctor.findById(userId);
-    if (!isDoctor) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'Doctor Account is not found !!');
-    }
-
-    const isPatient = await Patient.findById(payload.patientId);
-    if (!isPatient) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'Patient Account is not found !!');
-    }
-
-    const isAppointment = await Appointment.findById(payload.appointmentId);
-    if (!isAppointment) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'Appointment is not found !!');
-    }
-
-    payload.doctorId = isDoctor.id;
-
-    const session = await Prescription.startSession();
-    session.startTransaction();
     try {
+        const { userId } = user;
+        const isDoctor = await Doctor.findById(userId);
+        console.log("this is " + isDoctor)
+        if (!isDoctor) {
+            throw new ApiError(httpStatus.NOT_FOUND, 'Doctor Account is not found !!');
+        }
+
+        const isPatient = await Patient.findById(payload.patient);
+        console.log("this is " + isPatient)
+        if (!isPatient) {
+            throw new ApiError(httpStatus.NOT_FOUND, 'Patient Account is not found !!');
+        }
+
+        const isAppointment = await Appointment.findById(payload.appointment);
+        console.log("this is " + isDoctor)
+        if (!isAppointment) {
+            throw new ApiError(httpStatus.NOT_FOUND, 'Appointment is not found !!');
+        }
+
+        payload.doctor = isDoctor.id;
+        console.log("this is " + payload.doctor)
+        const session = await Prescription.startSession();
+        session.startTransaction();
+
         await Appointment.findByIdAndUpdate(isAppointment.id, { status: 'complete', followUp: payload.followUpDate });
 
         const medicines = payload.medicines;
         const prescription = await Prescription.create({ ...payload, medicines: undefined });
-
-        const medicinePromise = medicines.map((medicine) =>
-            Medicine.create({ ...medicine, prescriptionId: prescription.id })
-        );
-        await Promise.all(medicinePromise);
+        const medicinePromises = [];
+        for (const medicine of payload.medicines) {
+            medicine.prescriptionId = prescription.id;
+            medicinePromises.push(Medicine.create(medicine));
+        }
+        await Promise.all(medicinePromises);
 
         await session.commitTransaction();
         session.endSession();
         return { message: "Successfully Prescription Created" };
     } catch (error) {
-        await session.abortTransaction();
-        session.endSession();
-        throw new ApiError(httpStatus.BAD_REQUEST, error.message);
+        console.error("Error in createPrescription:", error);
+        throw new ApiError(httpStatus.BAD_REQUEST, error.message || "An error occurred while creating prescription");
     }
 };
+
 
 const getAllPrescriptions = async () => {
     const result = await Prescription.find();
@@ -65,15 +70,16 @@ const getPatientPrescriptionById = async (user) => {
     if (!isPatient) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Patient Account is not found !!');
     }
-    const result = await Prescription.find({ patientId: userId })
-        .populate({
-            path: 'doctor',
-            select: 'firstName lastName designation',
-        })
-        .populate({
-            path: 'appointment',
-            select: 'scheduleDate scheduleTime',
-        });
+    const result = await Prescription.find({ patient: userId })
+    console.log("this issss .... " + result)
+        // .populate({
+        //     path: 'doctor',
+        //     select: 'firstName lastName designation',
+        // })
+        // .populate({
+        //     path: 'appointment',
+        //     select: 'scheduleDate scheduleTime',
+        // });
     return result;
 };
 

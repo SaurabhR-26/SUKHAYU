@@ -36,8 +36,12 @@ import About from './components/About/About';
 import Service from './components/Service/Service';
 import Dashboard from './components/Doctor/Dashboard/Dashboard';
 import Emergency from './components/Home/EmergencyAmbulance/emergency';
+<<<<<<< Updated upstream
 import Reminders from "./components/patient/Reminders";
 import PatDashboard from "./components/patient/Dashboard/Dashboard";
+=======
+import SignUpData from "./components/Login/SignUpData";
+>>>>>>> Stashed changes
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -50,6 +54,7 @@ const router = createBrowserRouter([
   { path: "/service", element: <Service /> },
   // { path: "/login", element: <SignInForm /> },
   { path: "/login", element: <SignInForm /> },
+  { path: "/login/signup", element: <SignUpData /> },
 
   { path: "/doctors", element: <SearchDoctor /> },
   { path: "/doctors/profile/:id", element: <DoctorProfile /> },
@@ -57,7 +62,7 @@ const router = createBrowserRouter([
   { path: '/doctors', element: <SearchDoctor /> },
   { path: '/doctors/profile/:id', element: <DoctorProfile /> },
   { path: '/emergency', element: <Emergency /> },
-  
+
   { path: '/dashboard', element: <Dashboard /> },
   { path: '/dashboard/my-patients', element: <MyPatients /> },
   { path: '/dashboard/reviews', element: <Reviews /> },

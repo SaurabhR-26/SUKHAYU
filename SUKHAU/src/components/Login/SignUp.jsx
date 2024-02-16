@@ -7,6 +7,7 @@ import {
   useDoctorSignUpMutation,
   usePatientSignUpMutation,
 } from "../../redux/api/authApi";
+import { useNavigate } from "react-router-dom";
 
 // password regex
 // ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$
@@ -20,6 +21,7 @@ const SignUp = ({ setSignUp }) => {
   const [error, setError] = useState({});
   const [infoError, setInfoError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const formField = {
     firstName: "",
     lastName: "",
@@ -149,12 +151,13 @@ const SignUp = ({ setSignUp }) => {
   };
   const hanldeOnSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    if (userType === "doctor") {
-      doctorSignUp(user);
-    } else {
-      patientSignUp(user);
-    }
+    // setLoading(true);
+    // if (userType === "doctor") {
+    //   doctorSignUp(user);
+    // } else {
+    //   patientSignUp(user);
+    // }
+    navigate("/login/signup");
   };
 
   return (
